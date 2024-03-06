@@ -15,7 +15,7 @@
 - `PDNS_ADMIN_SECRET` PowerDNS admin secret
 - `PDNS_ALLOW_AXFR_IPS` PowerDNS AXFR ip ranges, separated by commas 
 
-## Example
+## Setup
 
 ```
 chmod +x ./setup.sh
