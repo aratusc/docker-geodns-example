@@ -1,19 +1,28 @@
-# Remote PowerDNS backend with GeoDNS provided
+# GeoDNS realization created with PowerDNS and MySQL
 
-## Getting started
+## Idea
+
+### We needed a GeoDNS implementation, that could be dynamically modified. By default PowerDNS does'nt support GeoIP with MySQL dynamically in real time.
+
+## Environment variables
+
+- `MYSQL_HOST` database host
+- `MYSQL_PORT` database port
+- `MYSQL_USER` username
+- `MYSQL_PASS` password
+- `MYSQL_NAME` database name
+- `PDNS_API_KEY` PowerDNS API key
+- `PDNS_ADMIN_SECRET` PowerDNS admin secret
+- `PDNS_ALLOW_AXFR_IPS` PowerDNS AXFR ip ranges, separated by commas 
+
+## Example
 
 ```
 chmod +x ./setup.sh
+
 ./setup.sh
-docker compose up --build -d
+
+docker compose build 
+
+docker compose up -d
 ```
-
-## Setting up PowerDNS admin
-
-Open this [url](http://127.0.0.1:9191) and configure PowerDNS settings.
-PDNS_API_URL=http://pdns_mysql:8081
-PDNS_API_KEY=YOUR_API_KEY
-
-## Feedback
-
-zakharpetrishchenko@hotmail.com
