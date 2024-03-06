@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_USER: ${MYSQL_USER:-pdns}
-      MYSQL_PASSWORD: "XCfns&q!fQZjjS2am!2P@kmh9tZ@Ag7Pi@VyXQOJI1p@uZD4dY"
+      MYSQL_PASSWORD: ${MYSQL_PASS:-XCfns&q!fQZjjS2am!2P@kmh9tZ@Ag7Pi@VyXQOJI1p@uZD4dY}
       MYSQL_DATABASE: ${MYSQL_DATABASE:-pdns}
       MYSQL_ALLOW_EMPTY_PASSWORD: ${MYSQL_ALLOW_EMPTY_PASSWORD:-yes}
     command: --max-allowed-packet=1G
@@ -16,13 +16,13 @@ services:
     networks:
       shared:
         aliases:
-            - mysql
+          - mysql
   pdns_remote:
     build: pdns_remote
     restart: unless-stopped
     environment:
       PDNS_remote_connection_string: http:url=http://pdns_backend:3000/dns
-      PDNS_allow_axfr_ips: ${PDNS_AXFR_IPS}
+      PDNS_allow_axfr_ips: ${PDNS_ALLOW_AXFR_IPS}
       PDNS_only_notify: ${PDNS_only_notify}
     ports:
       - "53:53"
@@ -43,7 +43,7 @@ services:
       PDNS_api_key: ${PDNS_API_KEY:-SecretKey}
       PDNS_gmysql_host: mysql
       PDNS_gmysql_user: ${MYSQL_USER:-pdns}
-      PDNS_gmysql_password: XCfns&q!fQZjjS2am!2P@kmh9tZ@Ag7Pi@VyXQOJI1p@uZD4dY
+      PDNS_gmysql_password: ${MYSQL_PASS:-XCfns&q!fQZjjS2am!2P@kmh9tZ@Ag7Pi@VyXQOJI1p@uZD4dY}
       PDNS_gmysql_dbname: ${MYSQL_DATABASE:-pdns}
     ports:
       - "8081:8081"
@@ -60,7 +60,7 @@ services:
     environment:
       MYSQL_HOST: mysql
       MYSQL_USER: ${MYSQL_USER:-pdns}
-      MYSQL_PASS: XCfns&q!fQZjjS2am!2P@kmh9tZ@Ag7Pi@VyXQOJI1p@uZD4dY
+      MYSQL_PASS: ${MYSQL_PASS:-XCfns&q!fQZjjS2am!2P@kmh9tZ@Ag7Pi@VyXQOJI1p@uZD4dY}
       MYSQL_NAME: ${MYSQL_DATABASE:-pdns}
     ports:
       - 3000:3000
